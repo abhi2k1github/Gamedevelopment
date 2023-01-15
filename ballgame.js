@@ -1,4 +1,4 @@
-let paddle_x, paddle_y, paddle_width, paddle_height, paddle_dx;
+let paddle_x, paddle_y, paddle_width, paddle_height, paddle_dx,score=0;
 let ball_x, ball_y, ball_diameter, ball_dx, ball_dy;
 function setup() {
   createCanvas(400, 400);
@@ -14,8 +14,8 @@ function setup() {
   pd1_h=15;
   
   ball_diameter = 20;
-  ball_dx =2;
-  ball_dy = 3;
+  ball_dx =1;
+  ball_dy = 1;
   paddle_dx = 3;
   ball_x = (width / 2) - (ball_diameter / 2);
   ball_y = (height / 2) - (ball_diameter / 2);
@@ -47,9 +47,11 @@ function draw () {
   ball_y = ball_y + ball_dy;
   
   if (keyIsDown(LEFT_ARROW)) {
+    if(paddle_x>0)
     paddle_x = paddle_x - paddle_dx;
   }
     if (keyIsDown(RIGHT_ARROW)) {
+      if(paddle_x+paddle_width<400)
     paddle_x = paddle_x + paddle_dx;
   }
  if((ball_x+ball_dx<paddle_x+paddle_width) && 
@@ -66,6 +68,10 @@ function draw () {
     ball_dy=-ball_dy;
     pd1_h=0;
     pd1_w=0;
+    score+=1;
  }
+  textSize(20);
+  fill("white");
+  text("Score "+score,20,20);
   
 }
